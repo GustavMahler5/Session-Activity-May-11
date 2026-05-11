@@ -68,6 +68,7 @@ class Game extends Phaser.Scene {
         this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
 
         this.keyW.on('down', () => { this.jump() });
+
     }
 
     jump() {
@@ -90,6 +91,13 @@ class GameOver extends Phaser.Scene {
     }
         create() {
             this.add.text(640, 360, "RolyPoly: To the End", { fontSize: "64px", fill: "#FFFFFF" }).setOrigin(0.5);
+            this.add.text(640, 460, "Press A to start again", { fontSize: "32px", fill: "#FFFFFF" }).setOrigin(0.5);
+            this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        }
+        update() {
+            if (this.keyA.isDown) {
+                this.scene.start("game");
+            }
         }
 }
 
